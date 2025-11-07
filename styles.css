@@ -408,12 +408,172 @@ body {
     transform: scale3d(1.5, 1.5, 2);
 }
 
+/* 响应式设计 - 移动端适配 */
 @media (max-width: 768px) {
-    header h1 {
+    body {
+        flex-direction: column;
+        height: auto;
+        overflow: auto;
+    }
+
+    /* 侧边栏在移动端变为顶部导航 */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    .sidebar-header {
+        padding: 20px 15px;
+    }
+
+    .sidebar-header h1 {
+        font-size: 1.3rem;
+    }
+
+    .sidebar-nav {
+        padding: 15px 0;
+    }
+
+    .nav-section {
+        margin-bottom: 15px;
+    }
+
+    .nav-section h3 {
+        padding: 8px 15px;
+        font-size: 0.8rem;
+    }
+
+    .nav-item {
+        padding: 10px 15px 10px 25px;
+        font-size: 0.9rem;
+    }
+
+    /* 主内容区 */
+    .main-content {
+        padding: 20px 15px;
+        overflow-y: visible;
+    }
+
+    /* Demo 页面 */
+    .demo-page h1 {
         font-size: 1.8rem;
     }
-    
-    .container {
-        grid-template-columns: 1fr;
+
+    .demo-page .subtitle {
+        font-size: 1rem;
+    }
+
+    .section {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+
+    .section h2 {
+        font-size: 1.3rem;
+    }
+
+    .section p,
+    .section li {
+        font-size: 0.95rem;
+    }
+
+    /* 演示区域 */
+    .demo-area {
+        min-height: 200px;
+        margin: 15px 0;
+    }
+
+    .box {
+        width: 80px;
+        height: 80px;
+        font-size: 0.9rem;
+    }
+
+    /* 按钮 */
+    .play-button {
+        padding: 10px 25px;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* 代码块 */
+    .code-block {
+        padding: 15px;
+        font-size: 0.85rem;
+        overflow-x: auto;
+    }
+
+    /* 信息框 */
+    .info-box {
+        padding: 12px 15px;
+    }
+
+    .info-box p {
+        font-size: 0.9rem;
+    }
+
+    /* 轴标签 */
+    .axis-label {
+        font-size: 1rem;
+    }
+}
+
+/* 小屏幕手机 */
+@media (max-width: 480px) {
+    .sidebar-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .demo-page h1 {
+        font-size: 1.5rem;
+    }
+
+    .section h2 {
+        font-size: 1.2rem;
+    }
+
+    .demo-area {
+        min-height: 180px;
+    }
+
+    .box {
+        width: 70px;
+        height: 70px;
+        font-size: 0.85rem;
+    }
+
+    .code-block {
+        font-size: 0.8rem;
+    }
+
+    /* 调整动画距离，避免超出屏幕 */
+    .animate-translateX,
+    .animate-duration,
+    .animate-ease,
+    .animate-linear,
+    .animate-ease-in,
+    .animate-ease-out,
+    .animate-ease-in-out,
+    .animate-delay {
+        transform: translateX(100px);
+    }
+
+    .animate-translate {
+        transform: translate(80px, 40px);
+    }
+
+    .animate-translateY {
+        transform: translateY(80px);
+    }
+
+    .animate-multiple {
+        transform: translateX(80px) rotate(45deg) scale(1.2);
+    }
+
+    .animate-translate3d {
+        transform: translate3d(80px, 40px, 80px);
     }
 }
