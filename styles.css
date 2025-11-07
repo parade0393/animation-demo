@@ -30,6 +30,23 @@ body {
 .sidebar-header h1 {
     font-size: 1.5rem;
     font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.back-home {
+    display: inline-block;
+    color: #3498db;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    background: rgba(52, 152, 219, 0.1);
+}
+
+.back-home:hover {
+    background: rgba(52, 152, 219, 0.2);
+    transform: translateX(-3px);
 }
 
 .sidebar-nav {
@@ -430,6 +447,11 @@ body {
 
     .sidebar-header h1 {
         font-size: 1.3rem;
+    }
+
+    .back-home {
+        font-size: 0.85rem;
+        padding: 6px 10px;
     }
 
     .sidebar-nav {
