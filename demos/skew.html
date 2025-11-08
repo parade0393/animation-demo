@@ -41,15 +41,15 @@
                 <ul>
                     <li><span class="highlight">x-angle</span> - X 轴方向的倾斜角度</li>
                     <li><span class="highlight">y-angle</span> - Y 轴方向的倾斜角度（可选，默认为 0）</li>
-                    <li><strong>正值：</strong>顺时针倾斜</li>
-                    <li><strong>负值：</strong>逆时针倾斜</li>
+                    <li><strong>skewX 正值：</strong>顶部向左，底部向右（/ 形状）</li>
+                    <li><strong>skewY 正值：</strong>左侧向上，右侧向下</li>
                     <li>常用单位：deg（度）</li>
                 </ul>
             </section>
 
             <section class="section">
-                <h2>示例 1：X 轴倾斜</h2>
-                <p>skewX(30deg) 沿 X 轴倾斜 30 度，产生平行四边形效果</p>
+                <h2>示例 1：X 轴倾斜（/）</h2>
+                <p>skewX(30deg) 顶部向左，底部向右，产生平行四边形效果</p>
                 
                 <div class="demo-area">
                     <div class="box" id="demo-box-1">30°</div>
@@ -59,13 +59,13 @@
                 
                 <div class="code-block"><span class="keyword">.box</span> {
   <span class="property">transform</span>: <span class="value">skewX(30deg)</span>;
-  <span class="comment">/* 等价于 skew(30deg, 0) */</span>
+  <span class="comment">/* 等价于 skew(30deg, 0) - 形成 / 形状 */</span>
 }</div>
             </section>
 
             <section class="section">
                 <h2>示例 2：Y 轴倾斜</h2>
-                <p>skewY(20deg) 沿 Y 轴倾斜 20 度</p>
+                <p>skewY(20deg) 左侧向上，右侧向下</p>
                 
                 <div class="demo-area">
                     <div class="box" id="demo-box-2">20°</div>
@@ -95,7 +95,7 @@
 }</div>
 
                 <div class="info-box">
-                    <p><strong>常见应用：</strong>创建平行四边形按钮、标签效果，或者制作动态的视觉效果</p>
+                    <p><strong>理解技巧：</strong>skewX 想象成把矩形的顶部和底部向相反方向推；skewY 想象成把左侧和右侧向相反方向推</p>
                 </div>
             </section>
         </div>

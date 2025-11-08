@@ -40,15 +40,15 @@
                 
                 <ul>
                     <li><span class="highlight">angle</span> - X 轴倾斜角度</li>
-                    <li><strong>正值：</strong>元素向右倾斜</li>
-                    <li><strong>负值：</strong>元素向左倾斜</li>
+                    <li><strong>正值：</strong>顶部向左偏移，底部向右偏移（形成 / 形状）</li>
+                    <li><strong>负值：</strong>顶部向右偏移，底部向左偏移（形成 \ 形状）</li>
                     <li>等价于 <span class="highlight">skew(angle, 0)</span></li>
                 </ul>
             </section>
 
             <section class="section">
-                <h2>示例 1：向右倾斜</h2>
-                <p>skewX(30deg) 将元素向右倾斜 30 度</p>
+                <h2>示例 1：正值倾斜（/）</h2>
+                <p>skewX(30deg) 顶部向左，底部向右，形成 / 形状</p>
                 
                 <div class="demo-area">
                     <div class="box" id="demo-box-1">30°</div>
@@ -58,13 +58,13 @@
                 
                 <div class="code-block"><span class="keyword">.box</span> {
   <span class="property">transform</span>: <span class="value">skewX(30deg)</span>;
-  <span class="comment">/* 向右倾斜 30 度 */</span>
+  <span class="comment">/* 顶部向左，底部向右 */</span>
 }</div>
             </section>
 
             <section class="section">
-                <h2>示例 2：向左倾斜</h2>
-                <p>使用负值向左倾斜</p>
+                <h2>示例 2：负值倾斜（\）</h2>
+                <p>skewX(-30deg) 顶部向右，底部向左，形成 \ 形状</p>
                 
                 <div class="demo-area">
                     <div class="box" id="demo-box-2">-30°</div>
@@ -74,7 +74,7 @@
                 
                 <div class="code-block"><span class="keyword">.box</span> {
   <span class="property">transform</span>: <span class="value">skewX(-30deg)</span>;
-  <span class="comment">/* 向左倾斜 30 度 */</span>
+  <span class="comment">/* 顶部向右，底部向左 */</span>
 }</div>
             </section>
 

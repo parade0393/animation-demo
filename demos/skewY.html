@@ -40,15 +40,15 @@
                 
                 <ul>
                     <li><span class="highlight">angle</span> - Y 轴倾斜角度</li>
-                    <li><strong>正值：</strong>元素向下倾斜</li>
-                    <li><strong>负值：</strong>元素向上倾斜</li>
+                    <li><strong>正值：</strong>左侧向上偏移，右侧向下偏移</li>
+                    <li><strong>负值：</strong>左侧向下偏移，右侧向上偏移</li>
                     <li>等价于 <span class="highlight">skew(0, angle)</span></li>
                 </ul>
             </section>
 
             <section class="section">
-                <h2>示例 1：向下倾斜</h2>
-                <p>skewY(20deg) 将元素向下倾斜 20 度</p>
+                <h2>示例 1：正值倾斜</h2>
+                <p>skewY(20deg) 左侧向上，右侧向下</p>
                 
                 <div class="demo-area">
                     <div class="box" id="demo-box-1">20°</div>
@@ -58,13 +58,13 @@
                 
                 <div class="code-block"><span class="keyword">.box</span> {
   <span class="property">transform</span>: <span class="value">skewY(20deg)</span>;
-  <span class="comment">/* 向下倾斜 20 度 */</span>
+  <span class="comment">/* 左侧向上，右侧向下 */</span>
 }</div>
             </section>
 
             <section class="section">
-                <h2>示例 2：向上倾斜</h2>
-                <p>使用负值向上倾斜</p>
+                <h2>示例 2：负值倾斜</h2>
+                <p>skewY(-20deg) 左侧向下，右侧向上</p>
                 
                 <div class="demo-area">
                     <div class="box" id="demo-box-2">-20°</div>
@@ -74,13 +74,13 @@
                 
                 <div class="code-block"><span class="keyword">.box</span> {
   <span class="property">transform</span>: <span class="value">skewY(-20deg)</span>;
-  <span class="comment">/* 向上倾斜 20 度 */</span>
+  <span class="comment">/* 左侧向下，右侧向上 */</span>
 }</div>
             </section>
 
             <section class="section">
                 <h2>示例 3：大角度倾斜</h2>
-                <p>skewY(30deg) 创建更明显的垂直倾斜</p>
+                <p>skewY(30deg) 左侧向上，右侧向下，倾斜更明显</p>
                 
                 <div class="demo-area">
                     <div class="box" id="demo-box-3">30°</div>
@@ -93,7 +93,7 @@
 }</div>
 
                 <div class="info-box">
-                    <p><strong>提示：</strong>skewY 通常与 skewX 组合使用，创建更复杂的倾斜效果</p>
+                    <p><strong>理解技巧：</strong>skewY 正值让左边缘向上移动，就像把矩形的左侧向上推，右侧向下推</p>
                 </div>
             </section>
         </div>
