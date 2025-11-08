@@ -39,7 +39,7 @@
 
             <section class="section">
                 <h2>语法说明</h2>
-                <div class="code-block"><span class="keyword">transform:</span> <span class="property">rotate3d</span>(<span class="value">x, y, z, angle</span>);</div>
+                <pre class="code-block"><code><span class="keyword">transform:</span> <span class="property">rotate3d</span>(<span class="value">x, y, z, angle</span>);</code></pre>
                 
                 <ul>
                     <li><span class="highlight">x, y, z</span> - 定义旋转轴的 3D 向量（0-1 之间的数值）</li>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
 
-                <div class="code-block"><span class="comment">/* X 轴旋转 */</span>
+                <pre class="code-block"><code><span class="comment">/* X 轴旋转 */</span>
 <span class="keyword">.box-x</span> {
   <span class="property">transform</span>: <span class="value">rotate3d(1, 0, 0, 60deg)</span>;
 }
@@ -91,7 +91,7 @@
 <span class="comment">/* Z 轴旋转 */</span>
 <span class="keyword">.box-z</span> {
   <span class="property">transform</span>: <span class="value">rotate3d(0, 0, 1, 60deg)</span>;
-}</div>
+}</code></pre>
             </section>
 
             <section class="section">
@@ -128,7 +128,7 @@
                 
                 <button class="play-button" onclick="playDemo3()">播放连续旋转</button>
 
-                <div class="code-block"><span class="keyword">@keyframes</span> <span class="value">rotate3d-animation</span> {
+                <pre class="code-block"><code><span class="keyword">@keyframes</span> <span class="value">rotate3d-animation</span> {
   <span class="keyword">0%</span> {
     <span class="property">transform</span>: <span class="value">rotate3d(1, 1, 1, 0deg)</span>;
   }
@@ -139,7 +139,7 @@
 
 <span class="keyword">.box</span> {
   <span class="property">animation</span>: <span class="value">rotate3d-animation 3s linear</span>;
-}</div>
+}</code></pre>
 
                 <div class="info-box">
                     <p><strong>应用场景：</strong>产品 3D 展示、Logo 动画、加载动画、创意交互效果</p>

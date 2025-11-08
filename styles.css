@@ -268,6 +268,12 @@ body {
   tab-size: 4;
 }
 
+/* 为 pre code 结构添加样式 */
+.code-block code {
+  display: block;
+  white-space: pre;
+}
+
 .code-block .keyword {
   color: #f472b6;
 }

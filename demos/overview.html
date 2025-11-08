@@ -221,7 +221,7 @@
           </div>
 
           <h3>完整写法</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 所有属性分开写 */</span>
             <span class="keyword">.box</span> { <span class="property">transition-property</span>: <span class="value">transform</span>;
             <span class="comment">/* 要过渡的属性 */</span> <span class="property">transition-duration</span>: <span class="value">0.3s</span>;
@@ -229,10 +229,10 @@
             <span class="comment">/* 缓动函数 */</span> <span class="property">transition-delay</span>: <span class="value">0s</span>;
             <span class="comment">/* 延迟时间 */</span>
             }
-          </div>
+          </code></pre>
 
           <h3>简写语法</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 语法：transition: property duration timing-function delay; */</span>
 
             <span class="comment">/* 完整简写 */</span>
@@ -250,17 +250,17 @@
             <span class="keyword">.box</span> { <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
             <span class="comment">/* ↑ 所有可动画的属性都会过渡 */</span>
             }
-          </div>
+          </code></pre>
 
           <h3>多个属性分别设置</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 不同属性使用不同的过渡效果 */</span>
             <span class="keyword">.box</span> { <span class="property">transition</span>: <span class="value">transform 0.3s ease</span>,
             <span class="value">opacity 0.5s linear</span>, <span class="value">background 0.2s ease-in</span>; }
-          </div>
+          </code></pre>
 
           <h3>实际应用示例</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 按钮悬停效果 */</span>
             <span class="keyword">.button</span> { <span class="property">transform</span>: <span class="value">translateY(0)</span>;
             <span class="property">transition</span>: <span class="value">transform 0.2s ease</span>; }
@@ -272,7 +272,7 @@
 
             <span class="keyword">.card:hover</span> { <span class="property">transform</span>: <span class="value">translateY(-5px)</span>;
             <span class="property">box-shadow</span>: <span class="value">0 10px 20px rgba(0,0,0,0.1)</span>; }
-          </div>
+          </code></pre>
 
           <div class="info-box">
             <p><strong>可以过渡的属性：</strong>transform、opacity、color、background、width、height、margin、padding 等大部分 CSS 属性。</p>
@@ -288,7 +288,7 @@
           </div>
 
           <h3>第一步：定义关键帧</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 使用 from/to */</span>
             <span class="keyword">@keyframes</span> <span class="value">slideIn</span> { <span class="keyword">from</span> {
             <span class="property">transform</span>: <span class="value">translateX(-100%)</span>; } <span class="keyword">to</span> {
@@ -299,10 +299,10 @@
             <span class="property">transform</span>: <span class="value">translateY(0)</span>; } <span class="keyword">50%</span> {
             <span class="property">transform</span>: <span class="value">translateY(-30px)</span>; } <span class="keyword">100%</span> {
             <span class="property">transform</span>: <span class="value">translateY(0)</span>; } }
-          </div>
+          </code></pre>
 
           <h3>第二步：完整写法</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 所有属性分开写 */</span>
             <span class="keyword">.box</span> { <span class="property">animation-name</span>: <span class="value">slideIn</span>;
             <span class="comment">/* 动画名称（@keyframes 定义的）*/</span> <span class="property">animation-duration</span>:
@@ -314,10 +314,10 @@
             <span class="property">animation-fill-mode</span>: <span class="value">none</span>; <span class="comment">/* 填充模式 */</span>
             <span class="property">animation-play-state</span>: <span class="value">running</span>; <span class="comment">/* 播放状态 */</span>
             }
-          </div>
+          </code></pre>
 
           <h3>简写语法</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 语法：animation: name duration timing-function delay iteration-count direction fill-mode; */</span>
 
             <span class="comment">/* 完整简写 */</span>
@@ -330,10 +330,10 @@
 
             <span class="comment">/* 最简写法（省略缓动，默认 ease）*/</span>
             <span class="keyword">.box</span> { <span class="property">animation</span>: <span class="value">slideIn 1s</span>; }
-          </div>
+          </code></pre>
 
           <h3>常用场景</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 无限循环 */</span>
             <span class="keyword">.spinner</span> { <span class="property">animation</span>: <span class="value">spin 2s linear infinite</span>;
             <span class="comment">/* ↑ 无限循环 */</span>
@@ -355,10 +355,10 @@
             <span class="value">pulse 1s ease-in-out infinite alternate</span>;
             <span class="comment">/* ↑ 来回交替 */</span>
             }
-          </div>
+          </code></pre>
 
           <h3>实际应用示例</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 加载动画 */</span>
             <span class="keyword">@keyframes</span> <span class="value">spin</span> { <span class="keyword">to</span> {
             <span class="property">transform</span>: <span class="value">rotate(360deg)</span>; } }
@@ -371,7 +371,7 @@
             <span class="property">opacity</span>: <span class="value">1</span>; } }
 
             <span class="keyword">.page</span> { <span class="property">animation</span>: <span class="value">fadeIn 0.5s ease</span>; }
-          </div>
+          </code></pre>
         </section>
 
         <!-- 对比表格 -->
@@ -450,7 +450,7 @@
           </div>
 
           <h3>代码对比</h3>
-          <div class="code-block">
+          <pre class="code-block"><code>
             <span class="comment">/* 方式 1：单独使用 transform - 瞬间变化 ❌ */</span>
             <span class="keyword">.box1</span> { <span class="property">transform</span>: <span class="value">rotate(45deg)</span>;
             <span class="comment">/* 页面加载时立即旋转 45 度，无动画 */</span>
@@ -477,7 +477,7 @@
             <span class="keyword">.box3</span> { <span class="property">animation</span>: <span class="value">spin 2s linear infinite</span>;
             <span class="comment">/* 持续旋转，每圈 2 秒 */</span>
             }
-          </div>
+          </code></pre>
 
           <div class="info-box" style="margin-top: 20px">
             <h3 style="margin-top: 0">📝 总结</h3>
