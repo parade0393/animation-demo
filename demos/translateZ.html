@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>translateZ() - Z 轴平移</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .demo-section {
+            margin: 40px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 演示 1：基础 Z 轴移动 */
+        .perspective-container {
+            perspective: 800px;
+            perspective-origin: center center;
+            height: 400px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .z-box {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.5s ease;
+            cursor: pointer;
+        }
+
+        .z-box:hover {
+            transform: translateZ(150px);
+        }
+
+        .z-box-back {
+            transform: translateZ(-100px);
+            opacity: 0.6;
+        }
+
+        .z-box-back:hover {
+            transform: translateZ(0px);
+            opacity: 1;
+        }
+
+        /* 演示 2：3D 层叠卡片 */
+        .cards-3d {
+            perspective: 1000px;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .card-stack {
+            position: relative;
+            width: 250px;
+            height: 300px;
+            transform-style: preserve-3d;
+        }
+
+        .stacked-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            transition: transform 0.5s ease;
+        }
+
+        .stacked-card:nth-child(1) {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            transform: translateZ(0px);
+        }
+
+        .stacked-card:nth-child(2) {
+            background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+            color: white;
+            transform: translateZ(-50px);
+        }
+
+        .stacked-card:nth-child(3) {
+            background: linear-gradient(135deg, #6ee7b7 0%, #34d399 100%);
+            color: white;
+            transform: translateZ(-100px);
+        }
+
+        .card-stack:hover .stacked-card:nth-child(1) {
+            transform: translateZ(100px);
+        }
+
+        .card-stack:hover .stacked-card:nth-child(2) {
+            transform: translateZ(50px);
+        }
+
+        .card-stack:hover .stacked-card:nth-child(3) {
+            transform: translateZ(0px);
+        }
+
+        /* 演示 3：3D 按钮 */
+        .button-3d-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            perspective: 600px;
+        }
+
+        .btn-3d {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-3d:hover {
+            transform: translateZ(20px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-3d:active {
+            transform: translateZ(5px);
+        }
+
+        .code-example {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .keyword { color: #f472b6; }
+        .property { color: #34d399; }
+        .value { color: #fbbf24; }
+        .comment { color: #9ca3af; }
+
+        .info-box {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .info-box h3 {
+            color: #059669;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #065f46;
+        }
+
+        .info-box li {
+            margin: 8px 0;
+        }
+
+        .control-panel {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            max-width: 400px;
+            margin: 10px auto;
+        }
+
+        .value-display {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← 返回首页</a>
+        
+        <h1>translateZ()</h1>
+        <p class="subtitle">Z 轴平移 - 控制元素在 3D 空间中的前后位置</p>
+
+        <div class="description">
+            <h2>什么是 translateZ()？</h2>
+            <p><code>translateZ()</code> 函数沿 Z 轴（垂直于屏幕）移动元素。正值向前（靠近观察者），负值向后（远离观察者）。</p>
+            <p><strong>重要：</strong>必须在父元素上设置 <code>perspective</code> 才能看到效果！</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>演示 1：基础 Z 轴移动</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">悬停方块查看 Z 轴移动效果</p>
+            
+            <div class="perspective-container">
+                <div class="z-box z-box-back">后退<br>-100px</div>
+                <div class="z-box">原位<br>0px</div>
+                <div class="z-box" style="transform: translateZ(50px);">前进<br>50px</div>
+            </div>
+
+            <div class="code-example">
+<span class="comment">/* 父容器必须设置 perspective */</span>
+<span class="keyword">.container</span> {
+    <span class="property">perspective</span>: <span class="value">800px</span>;
+}
+
+<span class="comment">/* Z 轴移动 */</span>
+<span class="keyword">.box</span> {
+    <span class="property">transform</span>: <span class="value">translateZ(0px)</span>;      <span class="comment">/* 原位 */</span>
+}
+
+<span class="keyword">.box:hover</span> {
+    <span class="property">transform</span>: <span class="value">translateZ(150px)</span>;   <span class="comment">/* 向前移动 150px */</span>
+}
+
+<span class="keyword">.box-back</span> {
+    <span class="property">transform</span>: <span class="value">translateZ(-100px)</span>;  <span class="comment">/* 向后移动 100px */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>演示 2：3D 层叠卡片</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">悬停查看卡片在 Z 轴上的层叠效果</p>
+            
+            <div class="cards-3d">
+                <div class="card-stack">
+                    <div class="stacked-card">1</div>
+                    <div class="stacked-card">2</div>
+                    <div class="stacked-card">3</div>
+                </div>
+            </div>
+
+            <div class="code-example">
+<span class="keyword">.card-stack</span> {
+    <span class="property">transform-style</span>: <span class="value">preserve-3d</span>;
+}
+
+<span class="keyword">.card:nth-child(1)</span> { <span class="property">transform</span>: <span class="value">translateZ(0px)</span>; }
+<span class="keyword">.card:nth-child(2)</span> { <span class="property">transform</span>: <span class="value">translateZ(-50px)</span>; }
+<span class="keyword">.card:nth-child(3)</span> { <span class="property">transform</span>: <span class="value">translateZ(-100px)</span>; }
+
+<span class="keyword">.card-stack:hover .card:nth-child(1)</span> { <span class="property">transform</span>: <span class="value">translateZ(100px)</span>; }
+<span class="keyword">.card-stack:hover .card:nth-child(2)</span> { <span class="property">transform</span>: <span class="value">translateZ(50px)</span>; }
+<span class="keyword">.card-stack:hover .card:nth-child(3)</span> { <span class="property">transform</span>: <span class="value">translateZ(0px)</span>; }
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>演示 3：3D 按钮效果</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">点击和悬停按钮查看 3D 效果</p>
+            
+            <div class="button-3d-container">
+                <button class="btn-3d">悬停我</button>
+                <button class="btn-3d">点击我</button>
+                <button class="btn-3d">试试看</button>
+            </div>
+
+            <div class="code-example">
+<span class="keyword">.btn-3d</span> {
+    <span class="property">transition</span>: <span class="value">all 0.3s ease</span>;
+}
+
+<span class="keyword">.btn-3d:hover</span> {
+    <span class="property">transform</span>: <span class="value">translateZ(20px)</span>;
+    <span class="property">box-shadow</span>: <span class="value">0 15px 30px rgba(16, 185, 129, 0.4)</span>;
+}
+
+<span class="keyword">.btn-3d:active</span> {
+    <span class="property">transform</span>: <span class="value">translateZ(5px)</span>;  <span class="comment">/* 按下效果 */</span>
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>交互式演示</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">拖动滑块调整 translateZ 值</p>
+            
+            <div class="control-panel">
+                <div class="perspective-container" style="height: 300px;">
+                    <div class="z-box" id="interactiveBox" style="transform: translateZ(0px);">
+                        <span id="zValue">0px</span>
+                    </div>
+                </div>
+                
+                <div class="slider-container">
+                    <label for="zSlider">translateZ 值：</label>
+                    <span class="value-display" id="sliderValue">0px</span>
+                    <input 
+                        type="range" 
+                        id="zSlider" 
+                        class="slider" 
+                        min="-200" 
+                        max="200" 
+                        value="0"
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 重要说明</h3>
+            <ul>
+                <li><strong>必须配合 perspective：</strong>父元素必须设置 perspective，否则看不到效果</li>
+                <li><strong>正值 vs 负值：</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>正值（如 100px）：元素向前移动，靠近观察者，看起来更大</li>
+                        <li>负值（如 -100px）：元素向后移动，远离观察者，看起来更小</li>
+                    </ul>
+                </li>
+                <li><strong>与 translate3d() 的关系：</strong>
+                    <ul style="margin-top: 5px;">
+                        <li><code>translateZ(100px)</code> = <code>translate3d(0, 0, 100px)</code></li>
+                    </ul>
+                </li>
+                <li><strong>性能优化：</strong>translateZ(0) 常用于开启硬件加速</li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="background: #fef3c7; border-left-color: #f59e0b;">
+            <h3 style="color: #d97706;">⚡ 性能技巧</h3>
+            <ul style="color: #92400e;">
+                <li><code>transform: translateZ(0)</code> 可以触发 GPU 加速</li>
+                <li>常用于优化动画性能，即使不需要 3D 效果</li>
+                <li>现代浏览器中，<code>will-change: transform</code> 是更好的选择</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const slider = document.getElementById('zSlider');
+        const box = document.getElementById('interactiveBox');
+        const zValue = document.getElementById('zValue');
+        const sliderValue = document.getElementById('sliderValue');
+
+        slider.addEventListener('input', (e) => {
+            const value = e.target.value;
+            box.style.transform = `translateZ(${value}px)`;
+            zValue.textContent = `${value}px`;
+            sliderValue.textContent = `${value}px`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>animation-play-state - 暂停/播放动画</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        .demo-section {
+            margin: 40px 0;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-radius: 12px;
+            flex-wrap: wrap;
+        }
+
+        .spinner {
+            width: 80px;
+            height: 80px;
+            border: 6px solid #e5e7eb;
+            border-top-color: #10b981;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .spinner:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .controlled-box {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 12px;
+            animation: moveAround 3s ease-in-out infinite;
+        }
+
+        .controlled-box.paused {
+            animation-play-state: paused;
+        }
+
+        @keyframes moveAround {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(200px); }
+        }
+
+        .multi-animation {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 12px;
+            animation: 
+                rotate360 2s linear infinite,
+                pulse 1.5s ease-in-out infinite;
+        }
+
+        .multi-animation:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes rotate360 {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .control-btn {
+            padding: 10px 25px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin: 10px 5px;
+        }
+
+        .control-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        .control-btn.pause {
+            background: #ef4444;
+        }
+
+        .control-btn.pause:hover {
+            background: #dc2626;
+        }
+
+        .code-example {
+            background: #1f2937;
+            color: #e5e7eb;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .keyword { color: #f472b6; }
+        .property { color: #34d399; }
+        .value { color: #fbbf24; }
+        .comment { color: #9ca3af; }
+
+        .info-box {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+
+        .info-box h3 {
+            color: #059669;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            color: #065f46;
+        }
+
+        .info-box li {
+            margin: 8px 0;
+        }
+
+        .demo-box {
+            text-align: center;
+        }
+
+        .demo-box h4 {
+            margin-bottom: 15px;
+            color: #059669;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← 返回首页</a>
+        
+        <h1>animation-play-state</h1>
+        <p class="subtitle">控制动画的播放和暂停状态</p>
+
+        <div class="description">
+            <h2>什么是 animation-play-state？</h2>
+            <p><code>animation-play-state</code> 属性用于控制动画是运行还是暂停。常用于创建可交互的动画效果。</p>
+        </div>
+
+        <div class="demo-section">
+            <h2>演示 1：悬停暂停动画</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">鼠标悬停在旋转的圆圈上，动画会暂停</p>
+            
+            <div class="demo-container">
+                <div class="demo-box">
+                    <h4>悬停我暂停</h4>
+                    <div class="spinner"></div>
+                </div>
+            </div>
+
+            <div class="code-example">
+<span class="comment">/* 定义旋转动画 */</span>
+<span class="keyword">.spinner</span> {
+    <span class="property">animation</span>: <span class="value">spin 1s linear infinite</span>;
+}
+
+<span class="comment">/* 悬停时暂停动画 */</span>
+<span class="keyword">.spinner:hover</span> {
+    <span class="property">animation-play-state</span>: <span class="value">paused</span>;
+}
+
+<span class="keyword">@keyframes</span> <span class="value">spin</span> {
+    <span class="keyword">to</span> { <span class="property">transform</span>: <span class="value">rotate(360deg)</span>; }
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>演示 2：按钮控制动画</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">点击按钮控制动画的播放和暂停</p>
+            
+            <div class="demo-container">
+                <div class="controlled-box" id="controlledBox"></div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="control-btn" onclick="playAnimation()">▶ 播放</button>
+                <button class="control-btn pause" onclick="pauseAnimation()">⏸ 暂停</button>
+            </div>
+
+            <div class="code-example">
+<span class="comment">/* CSS */</span>
+<span class="keyword">.box</span> {
+    <span class="property">animation</span>: <span class="value">moveAround 3s ease-in-out infinite</span>;
+}
+
+<span class="keyword">.box.paused</span> {
+    <span class="property">animation-play-state</span>: <span class="value">paused</span>;
+}
+
+<span class="comment">/* JavaScript */</span>
+<span class="keyword">function</span> <span class="value">pauseAnimation</span>() {
+    box.classList.<span class="property">add</span>(<span class="value">'paused'</span>);
+}
+
+<span class="keyword">function</span> <span class="value">playAnimation</span>() {
+    box.classList.<span class="property">remove</span>(<span class="value">'paused'</span>);
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>演示 3：暂停多个动画</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">一个元素可以有多个动画，暂停时会同时暂停所有动画</p>
+            
+            <div class="demo-container">
+                <div class="demo-box">
+                    <h4>旋转 + 脉冲<br>悬停暂停</h4>
+                    <div class="multi-animation"></div>
+                </div>
+            </div>
+
+            <div class="code-example">
+<span class="comment">/* 多个动画 */</span>
+<span class="keyword">.box</span> {
+    <span class="property">animation</span>: 
+        <span class="value">rotate360 2s linear infinite</span>,
+        <span class="value">pulse 1.5s ease-in-out infinite</span>;
+}
+
+<span class="comment">/* 悬停时暂停所有动画 */</span>
+<span class="keyword">.box:hover</span> {
+    <span class="property">animation-play-state</span>: <span class="value">paused</span>;
+}
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 重要说明</h3>
+            <ul>
+                <li><strong>可选值：</strong>
+                    <ul style="margin-top: 5px;">
+                        <li><code>running</code>：动画正在运行（默认值）</li>
+                        <li><code>paused</code>：动画已暂停</li>
+                    </ul>
+                </li>
+                <li><strong>暂停位置：</strong>动画会在当前位置暂停，不会重置</li>
+                <li><strong>多个动画：</strong>如果元素有多个动画，会同时暂停/播放所有动画</li>
+                <li><strong>常见用法：</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>悬停暂停：<code>:hover { animation-play-state: paused; }</code></li>
+                        <li>JavaScript 控制：通过添加/移除类名控制</li>
+                        <li>用户偏好：尊重用户的动画偏好设置</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="background: #fef3c7; border-left-color: #f59e0b;">
+            <h3 style="color: #d97706;">⚡ 实际应用场景</h3>
+            <ul style="color: #92400e;">
+                <li><strong>加载动画：</strong>数据加载完成后暂停旋转动画</li>
+                <li><strong>轮播图：</strong>鼠标悬停时暂停自动播放</li>
+                <li><strong>游戏：</strong>暂停游戏时停止所有动画</li>
+                <li><strong>无障碍：</strong>为有前庭障碍的用户提供暂停动画的选项</li>
+            </ul>
+        </div>
+
+        <h2 style="margin-top: 40px;">完整示例</h2>
+        <div class="code-example">
+<span class="comment">/* 轮播图自动播放 */</span>
+<span class="keyword">.carousel</span> {
+    <span class="property">animation</span>: <span class="value">slide 10s ease-in-out infinite</span>;
+}
+
+<span class="comment">/* 悬停时暂停 */</span>
+<span class="keyword">.carousel:hover</span> {
+    <span class="property">animation-play-state</span>: <span class="value">paused</span>;
+}
+
+<span class="comment">/* 尊重用户的动画偏好 */</span>
+<span class="keyword">@media (prefers-reduced-motion: reduce)</span> {
+    <span class="keyword">.carousel</span> {
+        <span class="property">animation-play-state</span>: <span class="value">paused</span>;
+    }
+}
+        </div>
+    </div>
+
+    <script>
+        const box = document.getElementById('controlledBox');
+        
+        function playAnimation() {
+            box.classList.remove('paused');
+        }
+        
+        function pauseAnimation() {
+            box.classList.add('paused');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scaleZ() - Z 轴缩放</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← 返回首页</a>
+        
+        <h1>scaleZ()</h1>
+        <p class="subtitle">Z 轴缩放 - 控制元素在 3D 空间中的深度缩放</p>
+
+        <div class="description">
+            <h2>什么是 scaleZ()？</h2>
+            <p><code>scaleZ()</code> 函数沿 Z 轴缩放元素。<strong>注意：</strong>单独使用 scaleZ() 看不到效果，必须配合其他 3D 变换（如 rotateX/Y）才能观察到变化。</p>
+        </div>
+
+        <div id="demo-content"></div>
+    </div>
+
+    <script>
+        const content = `
+        <style>
+            .demo-section {
+                margin: 40px 0;
+                padding: 40px;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .perspective-container {
+                perspective: 800px;
+                height: 400px;
+                background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+            }
+
+            .cube-3d {
+                width: 150px;
+                height: 150px;
+                position: relative;
+                transform-style: preserve-3d;
+                transition: transform 0.8s ease;
+                cursor: pointer;
+            }
+
+            .cube-3d:hover {
+                transform: rotateX(45deg) rotateY(45deg);
+            }
+
+            .cube-face {
+                position: absolute;
+                width: 150px;
+                height: 150px;
+                background: rgba(16, 185, 129, 0.8);
+                border: 2px solid #059669;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: 700;
+                font-size: 1.2rem;
+            }
+
+            .front  { transform: translateZ(75px); }
+            .back   { transform: rotateY(180deg) translateZ(75px); }
+            .right  { transform: rotateY(90deg) translateZ(75px); }
+            .left   { transform: rotateY(-90deg) translateZ(75px); }
+            .top    { transform: rotateX(90deg) translateZ(75px); }
+            .bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+            /* scaleZ 演示 */
+            .cube-scaled {
+                transform: scaleZ(2) rotateX(45deg) rotateY(45deg);
+            }
+
+            .cube-scaled .front  { transform: translateZ(75px); }
+            .cube-scaled .back   { transform: rotateY(180deg) translateZ(75px); }
+
+            .code-example {
+                background: #1f2937;
+                color: #e5e7eb;
+                padding: 20px;
+                border-radius: 12px;
+                margin-top: 20px;
+                font-family: 'Courier New', monospace;
+                font-size: 0.9rem;
+                overflow-x: auto;
+            }
+
+            .keyword { color: #f472b6; }
+            .property { color: #34d399; }
+            .value { color: #fbbf24; }
+            .comment { color: #9ca3af; }
+
+            .info-box {
+                background: #ecfdf5;
+                border-left: 4px solid #10b981;
+                padding: 20px;
+                border-radius: 8px;
+                margin-top: 30px;
+            }
+
+            .info-box h3 {
+                color: #059669;
+                margin-bottom: 10px;
+            }
+
+            .info-box ul {
+                margin-left: 20px;
+                color: #065f46;
+            }
+
+            .info-box li {
+                margin: 8px 0;
+            }
+
+            .comparison {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                margin-top: 20px;
+            }
+
+            .comparison-item {
+                text-align: center;
+            }
+
+            .comparison-item h4 {
+                margin-bottom: 15px;
+                color: #059669;
+            }
+        </style>
+
+        <div class="demo-section">
+            <h2>演示 1：scaleZ() 的效果</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">悬停立方体查看 3D 效果</p>
+            
+            <div class="comparison">
+                <div class="comparison-item">
+                    <h4>正常立方体 (scaleZ(1))</h4>
+                    <div class="perspective-container" style="height: 300px;">
+                        <div class="cube-3d">
+                            <div class="cube-face front">前</div>
+                            <div class="cube-face back">后</div>
+                            <div class="cube-face right">右</div>
+                            <div class="cube-face left">左</div>
+                            <div class="cube-face top">上</div>
+                            <div class="cube-face bottom">下</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-item">
+                    <h4>拉伸立方体 (scaleZ(2))</h4>
+                    <div class="perspective-container" style="height: 300px;">
+                        <div class="cube-3d cube-scaled">
+                            <div class="cube-face front">前</div>
+                            <div class="cube-face back">后</div>
+                            <div class="cube-face right">右</div>
+                            <div class="cube-face left">左</div>
+                            <div class="cube-face top">上</div>
+                            <div class="cube-face bottom">下</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-example">
+<span class="comment">/* scaleZ() 必须配合 3D 旋转才能看到效果 */</span>
+<span class="keyword">.cube</span> {
+    <span class="property">transform-style</span>: <span class="value">preserve-3d</span>;
+    <span class="property">transform</span>: <span class="value">scaleZ(2) rotateX(45deg) rotateY(45deg)</span>;
+}
+
+<span class="comment">/* 立方体的前后面距离会被拉伸 2 倍 */</span>
+<span class="keyword">.front</span>  { <span class="property">transform</span>: <span class="value">translateZ(75px)</span>; }
+<span class="keyword">.back</span>   { <span class="property">transform</span>: <span class="value">rotateY(180deg) translateZ(75px)</span>; }
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 重要说明</h3>
+            <ul>
+                <li><strong>单独使用无效：</strong>scaleZ() 必须配合 rotateX/Y 等 3D 变换才能看到效果</li>
+                <li><strong>作用原理：</strong>改变元素在 Z 轴上的深度，影响 translateZ 的实际距离</li>
+                <li><strong>值的含义：</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>scaleZ(1)：正常深度（默认）</li>
+                        <li>scaleZ(2)：深度拉伸 2 倍</li>
+                        <li>scaleZ(0.5)：深度压缩为一半</li>
+                    </ul>
+                </li>
+                <li><strong>实际应用：</strong>创建 3D 立方体、3D 文字效果等</li>
+            </ul>
+        </div>
+
+        <div class="info-box" style="background: #fef3c7; border-left-color: #f59e0b;">
+            <h3 style="color: #d97706;">⚠️ 为什么单独使用看不到效果？</h3>
+            <ul style="color: #92400e;">
+                <li>scaleZ() 只改变 Z 轴的缩放，不改变 X、Y 轴</li>
+                <li>如果元素没有在 Z 轴上旋转，从正面看深度变化是看不见的</li>
+                <li>就像从正面看一张纸，无论纸多厚都看不出来</li>
+                <li>必须旋转元素（rotateX/Y）才能看到深度的变化</li>
+            </ul>
+        </div>
+
+        <h2 style="margin-top: 40px;">实际应用示例</h2>
+        <div class="code-example">
+<span class="comment">/* 3D 文字效果 */</span>
+<span class="keyword">.text-3d</span> {
+    <span class="property">transform-style</span>: <span class="value">preserve-3d</span>;
+    <span class="property">transform</span>: <span class="value">scaleZ(3) rotateX(60deg) rotateY(30deg)</span>;
+}
+
+<span class="comment">/* 3D 按钮 */</span>
+<span class="keyword">.button-3d</span> {
+    <span class="property">transform</span>: <span class="value">scaleZ(2) rotateX(10deg)</span>;
+    <span class="property">transition</span>: <span class="value">transform 0.3s</span>;
+}
+
+<span class="keyword">.button-3d:hover</span> {
+    <span class="property">transform</span>: <span class="value">scaleZ(3) rotateX(15deg)</span>;
+}
+        </div>
+        `;
+        document.getElementById('demo-content').innerHTML = content;
+    </script>
+</body>
+</html>

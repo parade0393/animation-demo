@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>rotateZ() - Z 轴旋转</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-link">← 返回首页</a>
+        
+        <h1>rotateZ()</h1>
+        <p class="subtitle">Z 轴旋转 - 等同于 rotate()，绕 Z 轴旋转</p>
+
+        <div class="description">
+            <h2>什么是 rotateZ()？</h2>
+            <p><code>rotateZ()</code> 函数绕 Z 轴（垂直于屏幕）旋转元素。效果与 <code>rotate()</code> 完全相同，都是平面旋转。</p>
+        </div>
+
+        <div id="demo-content"></div>
+    </div>
+
+    <script>
+        const content = `
+        <style>
+            .demo-section {
+                margin: 40px 0;
+                padding: 40px;
+                background: white;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .demo-container {
+                display: flex;
+                gap: 40px;
+                justify-content: center;
+                align-items: center;
+                padding: 40px;
+                background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+                border-radius: 12px;
+                flex-wrap: wrap;
+            }
+
+            .rotate-box {
+                width: 120px;
+                height: 120px;
+                background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-weight: 700;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                transition: transform 0.5s ease;
+                cursor: pointer;
+            }
+
+            .rotate-box:hover {
+                transform: rotateZ(45deg);
+            }
+
+            .rotate-90 {
+                transform: rotateZ(90deg);
+            }
+
+            .rotate-180 {
+                transform: rotateZ(180deg);
+            }
+
+            .rotate-360 {
+                animation: spinZ 2s linear infinite;
+            }
+
+            @keyframes spinZ {
+                from { transform: rotateZ(0deg); }
+                to { transform: rotateZ(360deg); }
+            }
+
+            .code-example {
+                background: #1f2937;
+                color: #e5e7eb;
+                padding: 20px;
+                border-radius: 12px;
+                margin-top: 20px;
+                font-family: 'Courier New', monospace;
+                font-size: 0.9rem;
+                overflow-x: auto;
+            }
+
+            .keyword { color: #f472b6; }
+            .property { color: #34d399; }
+            .value { color: #fbbf24; }
+            .comment { color: #9ca3af; }
+
+            .info-box {
+                background: #ecfdf5;
+                border-left: 4px solid #10b981;
+                padding: 20px;
+                border-radius: 8px;
+                margin-top: 30px;
+            }
+
+            .info-box h3 {
+                color: #059669;
+                margin-bottom: 10px;
+            }
+
+            .info-box ul {
+                margin-left: 20px;
+                color: #065f46;
+            }
+
+            .info-box li {
+                margin: 8px 0;
+            }
+
+            .comparison {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                margin-top: 20px;
+            }
+
+            .comparison-item {
+                padding: 30px;
+                background: #f9fafb;
+                border-radius: 8px;
+                text-align: center;
+            }
+
+            .comparison-item h4 {
+                margin-bottom: 15px;
+                color: #059669;
+            }
+        </style>
+
+        <div class="demo-section">
+            <h2>演示 1：基础 rotateZ() 旋转</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">悬停方块查看旋转效果</p>
+            
+            <div class="demo-container">
+                <div class="rotate-box">悬停旋转<br>45°</div>
+                <div class="rotate-box rotate-90">固定<br>90°</div>
+                <div class="rotate-box rotate-180">固定<br>180°</div>
+                <div class="rotate-box rotate-360">持续<br>旋转</div>
+            </div>
+
+            <div class="code-example">
+<span class="comment">/* 基础旋转 */</span>
+<span class="keyword">.box</span> {
+    <span class="property">transform</span>: <span class="value">rotateZ(45deg)</span>;
+}
+
+<span class="comment">/* 悬停旋转 */</span>
+<span class="keyword">.box:hover</span> {
+    <span class="property">transform</span>: <span class="value">rotateZ(45deg)</span>;
+}
+
+<span class="comment">/* 持续旋转动画 */</span>
+<span class="keyword">@keyframes</span> <span class="value">spinZ</span> {
+    <span class="keyword">from</span> { <span class="property">transform</span>: <span class="value">rotateZ(0deg)</span>; }
+    <span class="keyword">to</span>   { <span class="property">transform</span>: <span class="value">rotateZ(360deg)</span>; }
+}
+
+<span class="keyword">.spinning</span> {
+    <span class="property">animation</span>: <span class="value">spinZ 2s linear infinite</span>;
+}
+            </div>
+        </div>
+
+        <div class="demo-section">
+            <h2>演示 2：rotateZ() vs rotate()</h2>
+            <p style="color: #6b7280; margin-bottom: 20px;">两者效果完全相同</p>
+            
+            <div class="comparison">
+                <div class="comparison-item">
+                    <h4>rotate(45deg)</h4>
+                    <div class="rotate-box" style="transform: rotate(45deg);">rotate()</div>
+                </div>
+                <div class="comparison-item">
+                    <h4>rotateZ(45deg)</h4>
+                    <div class="rotate-box" style="transform: rotateZ(45deg);">rotateZ()</div>
+                </div>
+            </div>
+
+            <div class="code-example">
+<span class="comment">/* 这两种写法效果完全相同 */</span>
+<span class="keyword">.box1</span> { <span class="property">transform</span>: <span class="value">rotate(45deg)</span>; }
+<span class="keyword">.box2</span> { <span class="property">transform</span>: <span class="value">rotateZ(45deg)</span>; }
+
+<span class="comment">/* rotate() 是 rotateZ() 的简写 */</span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>💡 重要说明</h3>
+            <ul>
+                <li><strong>与 rotate() 的关系：</strong>rotateZ() 和 rotate() 效果完全相同</li>
+                <li><strong>旋转方向：</strong>正值顺时针，负值逆时针</li>
+                <li><strong>单位：</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>deg（度）：最常用，360deg = 一圈</li>
+                        <li>rad（弧度）：2π rad = 一圈</li>
+                        <li>turn（圈数）：1turn = 一圈</li>
+                    </ul>
+                </li>
+                <li><strong>何时使用 rotateZ()：</strong>
+                    <ul style="margin-top: 5px;">
+                        <li>与 rotateX()、rotateY() 一起使用时，保持命名一致性</li>
+                        <li>在 3D 变换中明确指定 Z 轴旋转</li>
+                        <li>其他情况下，使用 rotate() 更简洁</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <h2 style="margin-top: 40px;">实际应用示例</h2>
+        <div class="code-example">
+<span class="comment">/* 加载动画 */</span>
+<span class="keyword">.spinner</span> {
+    <span class="property">animation</span>: <span class="value">spinZ 1s linear infinite</span>;
+}
+
+<span class="comment">/* 3D 组合变换 - 保持命名一致性 */</span>
+<span class="keyword">.cube</span> {
+    <span class="property">transform</span>: <span class="value">rotateX(30deg) rotateY(45deg) rotateZ(15deg)</span>;
+}
+
+<span class="comment">/* 卡片翻转 */</span>
+<span class="keyword">.card:hover</span> {
+    <span class="property">transform</span>: <span class="value">rotateZ(5deg) scale(1.05)</span>;
+}
+        </div>
+        `;
+        document.getElementById('demo-content').innerHTML = content;
+    </script>
+</body>
+</html>
