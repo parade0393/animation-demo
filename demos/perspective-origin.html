@@ -77,7 +77,6 @@
       .origin-custom {
         perspective-origin: 80% 30%;
       }
-
     </style>
   </head>
   <body>
@@ -116,8 +115,10 @@
 
         <section class="section">
           <h2>语法说明</h2>
-          <pre class="code-block"><code><span class="keyword">perspective-origin:</span> <span class="value">x-position y-position</span>;</code></pre>
-          
+          <pre
+            class="code-block"
+          ><code><span class="keyword">perspective-origin:</span> <span class="value">x-position y-position</span>;</code></pre>
+
           <ul>
             <li><code>perspective-origin</code> 属性定义了观察者（视角）在 3D 空间中的位置</li>
             <li>它决定了从哪个角度观察 3D 变换的元素</li>
@@ -191,7 +192,10 @@
             <ul>
               <li><strong>必须配合 perspective 使用：</strong>单独设置 perspective-origin 无效</li>
               <li><strong>默认值：</strong>center center (50% 50%)</li>
-              <li><strong>坐标系统：</strong>第一个值为水平位置（left / center / right / 百分比 / 像素），第二个值为垂直位置（top / center / bottom / 百分比 / 像素）</li>
+              <li>
+                <strong>坐标系统：</strong>第一个值为水平位置（left / center / right / 百分比 / 像素），第二个值为垂直位置（top / center / bottom /
+                百分比 / 像素）
+              </li>
               <li><strong>应用场景：</strong>创建更真实的 3D 效果，模拟不同角度的观察</li>
             </ul>
           </div>
